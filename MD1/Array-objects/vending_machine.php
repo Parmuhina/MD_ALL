@@ -7,7 +7,6 @@ do {
     }
 }while($yes===1);
 
-    //$products=[0.25, 0.63, 0.50];
     $allMoney=0;
     $coins=[1, 2, 5, 10, 20, 50, 100, 200];
     $allCash=0;
