@@ -1,24 +1,22 @@
 <?php
-//$yes=(int)readline("Vai gribi ievadīt produktu. Ja ja nospied 1, ja ne nospied 2.");
-//if ($yes===1) {
-  //  $productName = readline("Ievadi producta nosaukumu: ");
-    //$productCash = floatval(readline('Īevadi produkta cenu: '));
-    //$products+=[$productName=>$productCash];
-    //}
-//if($yes===2){
+do {
+    $yes = (int)readline("Vai gribi ievadīt produktu. Ja ja nospied 1, ja ne nospied 2.");
+    if ($yes === 1) {
+        $productCash = floatval(readline('Ievadi produkta cenu: '));
+        $products[] = $productCash;
+    }
+}while($yes===1);
 
-    $products=["Milk" => 0.25, "Bread" =>0.63, "Potatoes" => 0.50];
+    //$products=[0.25, 0.63, 0.50];
     $allMoney=0;
     $coins=[1, 2, 5, 10, 20, 50, 100, 200];
     $allCash=0;
     $atlikums=0;
 
-    foreach ($products as $key => $value){
+    foreach ($products as $value){
         $allMoney+=$value;
     }
     $allMoney=$allMoney*100;
-
-
 
     while($allCash<=$allMoney) {
         $coin = floatval(readline("Ievadi monetas daudzumu eiro: ")) * 100;
