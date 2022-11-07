@@ -2,12 +2,12 @@
 class Piglet
 {
     public $answer;
-    public function __construct($answer)
+    public function __construct(string $answer)
     {
         $this->answer=$answer;
     }
 
-    public static function check ($answer){
+    public static function check (string $answer){
         if($answer==="y"){
             return true;
         }

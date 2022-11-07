@@ -3,17 +3,17 @@ class NumberSquare
 {
     public $numberMin;
     public $numberMax;
-    function __construct($numberMin, $numberMax)
+    function __construct(int $numberMin, int $numberMax)
     {
         $this->numberMin=$numberMin;
         $this->numberMax=$numberMax;
     }
-    function check($number){
+    function check(string $number){
         if(is_numeric($number)===false){
             return false;
         }
     }
-    function print($numberMin, $numberMax){
+    function print(int $numberMin, int $numberMax){
         $allNumbers=[];
         for ($i=$numberMin; $i<=$numberMax; $i++ ){
             $allNumbers[]=$i;
@@ -35,10 +35,10 @@ while ($game->check($numberMin)===false){
     echo "Invalid min number: ".PHP_EOL;
     $numberMin=readline('Insert min number: ');
 }
-
+$game->numberMin=$numberMin;
 while ($game->check($numberMax)===false){
     echo "Invalid max number: ".PHP_EOL;
     $numberMax=readline('Insert max number: ');
 }
-
+$game->numberMax=$numberMax;
 $game->print($numberMin, $numberMax);

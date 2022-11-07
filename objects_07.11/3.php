@@ -11,7 +11,7 @@ class FuelGauge
     public function intro(){
         echo "Car`s current amount of fuel in liters is : {$this->currentFuelAmount}".PHP_EOL;
     }
-    function incrementFuelAmount($amount){
+    function incrementFuelAmount(int $amount){
         for($i=1; $i<=$amount; $i++) {
             if ($this->currentFuelAmount < 70) {
                 $this->currentFuelAmount++;
@@ -22,7 +22,7 @@ class FuelGauge
         }
     }
 
-    function decrementFuelAmount($amount){
+    function decrementFuelAmount(int $amount){
         for($i=1; $i<=$amount; $i++)
         if ($this->currentFuelAmount>0){
             $this->currentFuelAmount--;
@@ -44,7 +44,7 @@ class Odometer extends FuelGauge
     function print(){
         echo "Car`s current amount of mileage is : {$this->currentMileage}".PHP_EOL;
     }
-    public function incrementCurrentMileage($amount){
+    public function incrementCurrentMileage(int $amount){
         for ($i=1; $i<=$amount; $i++) {
             if ($this->currentMileage < 999999) {
                 $this->currentMileage++;

@@ -3,10 +3,10 @@ class RollTwoDice
 {
     public $sum;
 
-    function set_sum ($sum){
+    function set_sum (int $sum){
         return $this->sum=$sum;
     }
-    function check($sum){
+    function check(string $sum){
         if(is_numeric($sum)===false || (int)$sum<0 || (int)$sum>12){
             return false;
         }

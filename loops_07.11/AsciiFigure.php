@@ -2,17 +2,16 @@
 class AsciiFigure
 {
     public $number;
-    function set_number($number)
+    function set_number(int $number)
     {
         $this->number=$number;
     }
-    function check ($number){
+    function check (string $number){
         if(is_numeric($number)===false){
             return false;
         }
     }
-    function draw ($number){
-
+    function draw (int $number){
         $halfLength=($number-1)*4;
         for($i=0; $i<=$number-1; $i++){
             echo str_repeat("/", $halfLength-($i*4)).str_repeat("*", ($i*8));

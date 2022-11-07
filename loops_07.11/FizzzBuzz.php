@@ -2,16 +2,16 @@
 class FizzzBuzz
 {
     public $number;
-    public function __construct($number){
+    public function __construct(int $number){
         $this ->number=$number;
     }
-    function check($number){
+    function check(string $number){
         if(is_numeric($number)===false){
             return false;
         }
     }
 
-    function solve($numbers){
+    function solve(int $numbers){
         for($i=1; $i<=(int)$numbers; $i++) {
             if ((int)$i % 3 === 0 && (int)$i % 5 === 0) {
                 echo "FizzBuzz ";
