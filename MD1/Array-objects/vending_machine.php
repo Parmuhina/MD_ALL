@@ -1,44 +1,57 @@
 <?php
+
+function newObject(string $name, int $price){
+    $object=new stdClass();
+    $object->name=$name;
+    $object->price=$price;
+    return $object;
+}
+$allProducts=[
+    newObject("Capuchino", 126 ),
+    newObject("Tea", 150),
+    newObject('Espresso', 100),
+    newObject("Cacao", 150)
+];
+$coins=[200=>50, 100=>50, 50=>50, 20=>50, 10=>50, 5=>50, 2=>50, 1=>50];
 do {
-    $yes = readline("Vai gribi ievadīt produktu. Ja ja nospied 1, ja ne nospied 2.");
-    if ((int)$yes === 1 ) {
-        $productCash = readline('Ievadi produkta cenu: ');
-        if(is_numeric($productCash)) {
-            $products[] = (int)$productCash;
-        }else{
-            echo "Nepareiza vertiba: ".PHP_EOL;
-            continue;
-        }
-    }
-}while((int)$yes===1 || (int)$yes!=2);
-
-    $allMoney=0;
-    $coins=[1, 2, 5, 10, 20, 50, 100, 200];
+    $choice=0;
     $allCash=0;
-    $products=[];
     $atlikums=0;
-    foreach ($products as $value){
-        $allMoney+=$value;
+    for($i=0; $i<count($allProducts); $i++){
+        echo ($i+1).". ".$allProducts[$i]->name.", price is ".$allProducts[$i]->price/100;
+        echo PHP_EOL;
     }
 
-    while($allCash<=$allMoney) {
-        $coin = (int)readline("Ievadi ievadito monetas daudzumu centos: ");
-        if (in_array($coin, $coins)) {
-            $allCash += $coin;
-        } else {
-            echo "Nepareizs daudzums" . PHP_EOL;
-            continue;
+    do {
+        $choice = (int)readline('Insert your choice in integer number: ');
+        if ($choice <= 0 || $choice > count($allProducts)) {
+            echo "Not correct value. Insert new one.: " . PHP_EOL;
+        }
+    } while ($choice <= 0 || $choice > count($allProducts));
+
+    while ($allCash < $allProducts[($choice - 1)]->price) {
+        $coin = (int)readline("Insert coin amount in cents: ");
+        foreach ($coins as $key => $value) {
+            $count = 0;
+            if ($coin === $key) {
+                $allCash += $coin;
+
+            } else {
+                $count++;
+            }
+            if ($count === count($allProducts)) {
+                echo "Not correct coin amount." . PHP_EOL;
+                continue;
+            }
         }
     }
 
-    $atlikums=$allCash-$allMoney;
+    $atlikums = $allCash - $allProducts[($choice - 1)]->price;
 
-    for ($i=count($coins)-1; $i>=0; $i--){
-        $counter=0;
-        while($atlikums>=$coins[$i]){
-            $counter++;
-            $atlikums-=$coins[$i];
-        }
-        echo "Coin {$coins[$i]} is equal to {$counter}".PHP_EOL;
-
+    foreach ($coins as $key => $value) {
+        echo "Coin {$key} is equal to " . intdiv($atlikums, $key) . ", coin amount is " . $value - intdiv($atlikums, $key) . PHP_EOL;
+        $atlikums -= ($key * intdiv($atlikums, $key));
+        $coins[$key]=intdiv($atlikums, $key);
     }
+    $ins=readline("Do you want to choose product. If yes, print: y. If no, print something else.");
+}while($ins==="y");
