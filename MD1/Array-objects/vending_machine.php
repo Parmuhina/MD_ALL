@@ -1,24 +1,28 @@
 <?php
 do {
-    $yes = (int)readline("Vai gribi ievadīt produktu. Ja ja nospied 1, ja ne nospied 2.");
-    if ($yes === 1) {
-        $productCash = floatval(readline('Ievadi produkta cenu: '));
-        $products[] = $productCash;
+    $yes = readline("Vai gribi ievadīt produktu. Ja ja nospied 1, ja ne nospied 2.");
+    if ((int)$yes === 1 ) {
+        $productCash = readline('Ievadi produkta cenu: ');
+        if(is_numeric($productCash)) {
+            $products[] = (int)$productCash;
+        }else{
+            echo "Nepareiza vertiba: ".PHP_EOL;
+            continue;
+        }
     }
-}while($yes===1);
+}while((int)$yes===1 || (int)$yes!=2);
 
     $allMoney=0;
     $coins=[1, 2, 5, 10, 20, 50, 100, 200];
     $allCash=0;
+    $products=[];
     $atlikums=0;
-
     foreach ($products as $value){
         $allMoney+=$value;
     }
-    $allMoney=$allMoney*100;
 
     while($allCash<=$allMoney) {
-        $coin = floatval(readline("Ievadi monetas daudzumu eiro: ")) * 100;
+        $coin = (int)readline("Ievadi ievadito monetas daudzumu centos: ");
         if (in_array($coin, $coins)) {
             $allCash += $coin;
         } else {
