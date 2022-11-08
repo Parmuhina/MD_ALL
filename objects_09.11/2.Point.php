@@ -1,13 +1,13 @@
 <?php
 class Point
 {
-    public $x;
-    public $y;
-    function __construct($x, $y){
+    public int $x;
+    public int $y;
+    function __construct(int $x, int $y){
         $this->x=$x;
         $this->y=$y;
     }
-    function swapPoints($p1, $p2){
+    function swapPoints(object $p1, object $p2):void{
         list($p1->x, $p2->x)=array($p2->x, $p1->x);
         list($p1->y, $p2->y)=array($p2->y, $p1->y);
 

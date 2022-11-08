@@ -1,9 +1,9 @@
 <?php
 class Product
 {
-    public $name;
-    public $startPrice;
-    public $amount;
+    private string $name;
+    private float $startPrice;
+    private int $amount;
 
     public function __construct(string $name, float $startPrice, int $amount)
     {
@@ -12,8 +12,8 @@ class Product
         $this->amount=$amount;
     }
 
-    function printProduct(){
-        echo $this->name. ", ".$this->startPrice.", ".$this->amount." units".PHP_EOL;
+    function printProduct():string{
+        return $this->name. ", ".$this->startPrice.", ".$this->amount." units";
     }
 }
 
@@ -23,7 +23,7 @@ $allProducts[]=new Product("Epson EB-U05", 440.46, 1 );
 
 for($i=0; $i<count($allProducts); $i++) {
     echo ($i+1).". ";
-    $allProducts[$i]->printProduct();
+    echo $allProducts[$i]->printProduct().PHP_EOL;
 }
 $yes = readline("If do jou want to change amount press: a.
 if change price, press p: If you don`t want to change, press anything else. ");
@@ -49,7 +49,7 @@ do {
     }
     for($i=0; $i<count($allProducts); $i++) {
         echo ($i+1).". ";
-        $allProducts[$i]->printProduct();
+        echo $allProducts[$i]->printProduct().PHP_EOL;
     }
     $yes = readline("If do jou want to change amount press: a.
 if change price, press p: If you don`t want to change, press anything else.");
