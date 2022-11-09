@@ -33,6 +33,7 @@ class SoftDrinks
 $surveyed=1246700;
 $result=new SoftDrinks();
 echo "Total number of people surveyed " . $surveyed.PHP_EOL;
+
     try {
         echo "Approximately " .$result->calculate_energy_drinkers(). " bought at least one energy drink".PHP_EOL;
     } catch (Exception $exception){
