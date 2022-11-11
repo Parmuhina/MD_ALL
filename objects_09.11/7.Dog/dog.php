@@ -3,10 +3,10 @@ class Dog
 {
     private string $name;
     private string $sex;
-    private $mother;
-    private $father;
+    private ?Dog $mother;
+    private ?Dog $father;
 
-    public function __construct(string $name, string $sex, $mother=null, $father=null)
+    public function __construct(string $name, string $sex, ?Dog $mother=null, ?Dog $father=null)
     {
         $this->sex=$sex;
         $this->name=$name;

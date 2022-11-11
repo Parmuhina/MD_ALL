@@ -3,16 +3,16 @@ require_once "dog.php";
 class DogTest
 {
     public function Main()
-    {
-        $max=new Dog("Max", "male", "Lady", "Rocky");
-        $rocky=new Dog ("Rocky", "male", "Molly", "Sam");
-        $sparky=new Dog ("Sparky", "male");
-        $buster=new Dog("Buster", "male", "Lady", "Sparky");
-        $sam=new Dog("Sam", "male");
-        $lady=new Dog("Lady", "female");
-        $molly=new Dog("Molly", "female");
-        $coco=new Dog ("Coco", "female", "Molly", "Buster");
-
+    { $dogs=[
+        new Dog("Max", "male", "Lady", "Rocky");
+        new Dog ("Rocky", "male", "Molly", "Sam");
+        new Dog ("Sparky", "male");
+        new Dog("Buster", "male", "Lady", "Sparky");
+        new Dog("Sam", "male");
+        new Dog("Lady", "female");
+        new Dog("Molly", "female");
+        new Dog ("Coco", "female", "Molly", "Buster");
+            ]
         echo ($coco->fathersName()===null)? 'Unknown'.PHP_EOL :$coco->fathersName().PHP_EOL;
         echo ($sparky->fathersName()===null)? 'Unknown'.PHP_EOL :$sparky->fathersName().PHP_EOL;
 

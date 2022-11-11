@@ -25,9 +25,9 @@ class Movie
 
 }
 $movies=[
-  new Movie("Casino Royale", "Eon Productions", "PG13"),
-  new Movie("Glass", "Buena Vista International", "PG13"),
-  new Movie("Spider-Man: Into the Spider-Verse", "Columbia Pictures", "PG")
+    new Movie("Casino Royale", "Eon Productions", "PG13"),
+    new Movie("Glass", "Buena Vista International", "PG13"),
+    new Movie("Spider-Man: Into the Spider-Verse", "Columbia Pictures", "PG")
 ];
 for ($i=0; $i<count($movies[0]->getPG($movies)); $i++) {
     echo "Film is:" . PHP_EOL;
