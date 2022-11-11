@@ -38,13 +38,13 @@ class Application
                     $this->add_movies($this->videoStore);
                     break;
                 case 2:
-                    $this->rent_video($this->videoStore);
+                    $this->rent_video($this->videoStore,$this->videos);
                     break;
                 case 3:
-                    $this->return_video();
+                    $this->return_video($this->videoStore, $this->videos);
                     break;
                 case 4:
-                    $this->list_inventory();
+                    $this->list_inventory($this->videos);
                     break;
                 case 5:
                     $this->giveRatings($this->videoStore);
@@ -71,24 +71,43 @@ class Application
         var_dump($this->collection);
     }
 
-    private function rent_video(VideoStore $videoStore):void
+    private function rent_video(VideoStore $videoStore, array $videos):void
     {
         echo "Insert your video title: ";
         $title=readline();
-        if($this->videoStore->checkOut($title)->beingReturned()){
-         $this->videoStore->checkOut($title)->setFlag(false);
+        if($title="Godfather 2" && ($this->videoStore->checkOut($title, $videos)->beingReturned())){
+            $this->list_inventory($videos);
+        }
+        if ($this->videoStore->checkOut($title, $videos)===null){
+            echo "This video not in store!".PHP_EOL;
+        }elseif($this->videoStore->checkOut($title, $videos)->beingReturned()){
+            $this->videoStore->checkOut($title, $videos)->setFlag(false);
         }else{
-            echo "This wideo is rented.".PHP_EOL;
+            echo "This video is rented.".PHP_EOL;
+        }
+
+    }
+
+    private function return_video(VideoStore $videoStore, array $videos)
+    {
+        echo "Insert your video title which you want tor return: ";
+        $title=readline();
+
+        if ($this->videoStore->checkOut($title, $videos)===null){
+            echo "This is not our store video.".PHP_EOL;
+        }else{
+            $this->videoStore->checkOut($title, $videos)->setFlag(true);
         }
     }
 
-    private function return_video()
+    private function list_inventory(array $videos):void
     {
-        //todo
-    }
-
-    private function list_inventory()
-    {
+        foreach ($videos as $video) {
+            echo "Film name is " . $video->getTitle() . " 
+film rating is " . $video->getRating() . " 
+is film in store " . $video->beingReturned() . PHP_EOL;
+            echo PHP_EOL;
+        }
     }
 }
 

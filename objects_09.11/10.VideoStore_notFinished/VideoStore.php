@@ -10,17 +10,17 @@ class VideoStore
         $this->collection=$collection;
     }
 
-    public function getVideos():array
+    public function checkOut (string $title, array $videos):?Video
     {
-
-    }
-
-    public function checkOut (string $title):Video
-    {
-        foreach ($this->collection as $video){
-            if($video->getTitle()===$title){
+        $counter=0;
+        foreach ($videos as $video) {
+            if ($video->getTitle() === $title) {
                 return $video;
             }
+            $counter++;
+        }
+        if($counter===count($videos)){
+            return null;
         }
     }
 
@@ -33,4 +33,5 @@ class VideoStore
     {
         $video->setRating($rating);
     }
+
 }

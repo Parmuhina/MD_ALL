@@ -12,7 +12,7 @@ class Video
     }
     public function setFlag(bool $flag):void
     {
-        $this->flag;
+        $this->flag=$flag;
     }
     public function beingReturned ():bool
     {
