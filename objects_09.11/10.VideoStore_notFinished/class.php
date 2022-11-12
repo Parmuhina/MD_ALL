@@ -59,6 +59,7 @@ class Application
     {
         $title=readline("Please enter film name: ");
         $this->videoStore->addInStore(new Video($title, IN, 0));
+        $this->videos[]=new Video($title, IN, 0);
     }
 
     private function giveRatings(VideoStore $videoStore):void
@@ -75,7 +76,7 @@ class Application
     {
         echo "Insert your video title: ";
         $title=readline();
-        if($title="Godfather 2" && ($this->videoStore->checkOut($title, $videos)->beingReturned())){
+        if($title==="Godfather 2" && ($this->videoStore->checkOut($title, $videos)->beingReturned())){
             $this->list_inventory($videos);
         }
         if ($this->videoStore->checkOut($title, $videos)===null){
@@ -105,7 +106,8 @@ class Application
         foreach ($videos as $video) {
             echo "Film name is " . $video->getTitle() . " 
 film rating is " . $video->getRating() . " 
-is film in store " . $video->beingReturned() . PHP_EOL;
+is film in store ";
+            echo ($video->beingReturned())? "IN": "OUT" . PHP_EOL;
             echo PHP_EOL;
         }
     }
